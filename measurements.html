@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medidas de valvulas de presión de Pozos Petroleros</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header class="mb-3">
+      <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+          <a href="./index.html" class="navbar-brand text-light m-0">PDVSA</a>
+          <button
+            class="navbar-toggler bg-light"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar"
+            aria-controls="navbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="justify-content-end collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="text-light nav-link" href="./wells.html">Pozos petroliferos</a></li>
+              <li class="nav-item"><a class="text-light nav-link" href="./valves.html">Valvulas PSI</a></li>
+              <li class="nav-item">
+                <a class="text-light nav-link" href="#">Medidas de las Valvulas PSI</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-fluid">
+      <div class="row g-5">
+        <section class="col-sm-7">
+          <h2 class="h2 mb-3">Medidas PSI de las valvulas registradas</h2>
+          <form id="formSearch" class="row mb-3 g-2">
+            <div class="col-6">
+              <select class="form-select" name="searchByWell" id="searchByWell">
+                <option selected>Selecciona una pozo</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <select class="form-select" name="searchByValve" id="searchByValve">
+                <option selected>Primero debes de seleccionar un pozo</option>
+              </select>
+            </div>
+          </form>
+          <table class="table table-striped">
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">ID</th>
+                <th scope="col">Nombre de la valvula</th>
+                <th scope="col">Fecha de registro</th>
+                <th scope="col">Presión registrada (PSI)</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+          <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#modalGraphic">
+            Generar grafica
+          </button>
+        </section>
+        <section class="col-sm-5">
+          <div class="border border-2 rounded p-3">
+            <h2 class="h4 mb-4">Registrar medida</h2>
+            <form id="form">
+              <div class="mb-3">
+                <select class="form-select" name="well" id="well"></select>
+              </div>
+              <div class="mb-3">
+                <select class="form-select" name="valve" id="valve">
+                  <option selected>Primero debes seleccionar un pozo</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="Presión a registrar (PSI)"
+                  name="psi"
+                  id="psi"
+                  class="form-control"
+                />
+              </div>
+              <button type="submit" class="btn btn-dark w-100">Registrar medida</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div
+      class="modal fade"
+      id="modalGraphic"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="modalGraphic"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalGraphic">Generar grafica</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <select class="form-select" name="wellGraphic" id="wellGraphic"></select>
+              </div>
+              <div class="col-6">
+                <select class="form-select" name="valveGraphic" id="valveGraphic">
+                  <option selected>Primeros debes de seleccionar un pozo</option>
+                </select>
+              </div>
+            </div>
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <label for="startDate" class="form-label">Fecha y hora de inicio</label>
+                <input class="form-control" type="datetime-local" name="startDate" id="startDate" />
+              </div>
+              <div class="col-6">
+                <label for="endDate" class="form-label">Fecha y hora de cierre</label>
+                <input class="form-control" type="datetime-local" name="endDate" id="endDate" />
+              </div>
+            </div>
+
+            <div>
+              <canvas id="chart"></canvas>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="generateGraphic" class="btn btn-dark">Generar grafica</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/measurements.js"></script>
+  </body>
+</html>

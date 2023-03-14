@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medidas de valvulas de presión de Pozos Petroleros</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header class="mb-3">
+      <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+          <a href="./index.html" class="navbar-brand text-light m-0">PDVSA</a>
+          <button
+            class="navbar-toggler bg-light"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar"
+            aria-controls="navbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="justify-content-end collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="text-light nav-link active" href="#">Pozos petroliferos</a></li>
+              <li class="nav-item"><a class="text-light nav-link" href="./valves.html">Valvulas PSI</a></li>
+              <li class="nav-item"><a class="text-light nav-link" href="./measurements.html">Medidas de las Valvulas PSI</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-fluid">
+      <div class="row g-5">
+        <section class="col-sm-7">
+          <h2 class="h2 mb-3">Pozos petroliferos registrados</h2>
+          <table class="table table-striped">
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Ubicación</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </section>
+        <section class="col-sm-5">
+          <div class="border border-2 rounded p-3">
+            <h2 class="h4 mb-4">Registrar pozo</h2>
+            <form id="form">
+              <div class="mb-3">
+                <input
+                  type="text"
+                  placeholder="Ubicación del pozo"
+                  name="location"
+                  id="location"
+                  class="form-control"
+                />
+              </div>
+              <div class="mb-3">
+                <input type="text" placeholder="Nombre del pozo" name="name" id="name" class="form-control" />
+              </div>
+              <button type="submit" class="btn btn-dark w-100">Registrar pozo</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/wells.js"></script>
+  </body>
+</html>
